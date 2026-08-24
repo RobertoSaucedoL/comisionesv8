@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liquidador de Bono Comercial 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-profundo:#15212F;
+    --azul-corp:#2E3A47;
+    --azul-gris:#8296A9;
+    --naranja:#D98918;
+    --naranja-vivo:#F2A52B;
+    --turquesa:#0E6974;
+    --blanco:#FFFFFF;
+    --fondo-suave:#F4F6F8;
+    --borde:#DFE6EC;
+    --sombra:0 18px 50px rgba(21,33,47,.08);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:'Montserrat',Arial,sans-serif;
+    font-weight:300;color:var(--azul-corp);
+    background:
+      radial-gradient(circle at 8% 18%,rgba(217,137,24,.09),transparent 24rem),
+      radial-gradient(circle at 92% 38%,rgba(14,105,116,.08),transparent 28rem),
+      #F7F9FB;
+    line-height:1.5;min-height:100vh;
+  }
+  .contenedor{width:100%;max-width:1920px;margin:0 auto;padding:0 clamp(16px,1.5vw,28px);}
+
+  header{
+    background:
+      radial-gradient(circle at 88% 20%,rgba(14,105,116,.42),transparent 25rem),
+      linear-gradient(122deg,#101A26 0%,var(--azul-profundo) 48%,#24394C 100%);
+    color:var(--blanco);position:relative;overflow:hidden;
+    padding:46px 0 36px;border-radius:0 0 40px 40px;
+    box-shadow:0 20px 55px rgba(21,33,47,.18);
+  }
+  header::before,header::after{content:'';position:absolute;border-radius:50%;pointer-events:none;}
+  header::before{width:240px;height:240px;right:8%;top:-150px;border:1px solid rgba(255,255,255,.13);box-shadow:0 0 0 42px rgba(255,255,255,.025);}
+  header::after{width:150px;height:150px;right:24%;bottom:-120px;background:rgba(217,137,24,.13);filter:blur(2px);}
+  header .contenedor{position:relative;z-index:1;}
+  header h1{font-weight:800;font-size:clamp(21px,3.2vw,32px);letter-spacing:.5px;text-transform:uppercase;}
+  header p.sub{color:#F3B65D;font-weight:700;margin-top:7px;font-size:14px;letter-spacing:.25px;}
+  .selector-anio-shell{
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+    margin-bottom:24px;padding:12px 14px 12px 18px;border-radius:22px;
+    background:rgba(255,255,255,.07);border:1px solid rgba(130,150,169,.38);
+    backdrop-filter:blur(10px);box-shadow:0 14px 35px rgba(0,0,0,.12);
+  }
+  .selector-anio-copy small{display:block;color:#9FB1C1;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;}
+  .selector-anio-copy strong{display:block;margin-top:3px;color:#fff;font-size:14px;line-height:1.25;}
+  .selector-anio{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:9px;flex:0 0 min(390px,46%);}
+  .btn-anio{
+    min-height:68px;padding:10px 18px;border-radius:17px;cursor:pointer;
+    border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.06);color:#fff;
+    font-family:'Montserrat',sans-serif;text-align:left;transition:transform .2s ease,background .2s ease,box-shadow .2s ease,border-color .2s ease;
+  }
+  .btn-anio span{display:block;font-size:22px;font-weight:800;line-height:1;}
+  .btn-anio small{display:block;margin-top:6px;color:#A9BAC8;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.55px;}
+  .btn-anio.activo{background:linear-gradient(135deg,var(--naranja-vivo),var(--naranja));border-color:transparent;box-shadow:0 10px 25px rgba(217,137,24,.32);}
+  .btn-anio.activo small{color:#fff;}
+  .btn-anio:hover{transform:translateY(-2px);background-color:rgba(255,255,255,.11);}
+  .meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;}
+  .meta span{
+    background:rgba(255,255,255,.08);border:1px solid rgba(130,150,169,.45);
+    border-radius:999px;padding:6px 14px;font-size:12.5px;color:var(--blanco);
+    backdrop-filter:blur(8px);
+  }
+  .meta span b{color:var(--naranja);font-weight:700;}
+  #fuenteSheets.sheet-ok b{color:#66D7A5;}
+  #fuenteSheets.sheet-error b{color:#F3B65D;}
+  .meta .estado-app{display:inline-flex;align-items:center;gap:8px;border-color:rgba(102,215,165,.35);}
+  .estado-app i{width:8px;height:8px;border-radius:50%;background:#66D7A5;box-shadow:0 0 0 0 rgba(102,215,165,.55);animation:pulso 2s infinite;}
+
+  .paso{
+    background:rgba(255,255,255,.94);border:1px solid var(--borde);
+    border-radius:24px;padding:28px 28px 24px;margin-top:28px;
+    box-shadow:var(--sombra);position:relative;overflow:hidden;
+    transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+  }
+  .paso::before{content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--naranja),var(--turquesa),transparent 78%);opacity:.75;}
+  .paso:hover{transform:translateY(-2px);box-shadow:0 24px 60px rgba(21,33,47,.11);border-color:#D3DDE5;}
+  .paso-titulo{display:flex;align-items:center;gap:14px;margin-bottom:6px;}
+  .num{
+    background:linear-gradient(145deg,var(--naranja-vivo),var(--naranja));color:var(--blanco);font-weight:800;font-size:16px;
+    width:40px;height:40px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex:0 0 40px;
+    box-shadow:0 9px 22px rgba(217,137,24,.26);
+  }
+  .num.nota{background:var(--azul-gris);}
+  .paso h2{font-weight:800;text-transform:uppercase;font-size:19px;color:var(--azul-corp);letter-spacing:.4px;}
+  .paso p.des{color:var(--azul-gris);font-size:14px;margin:2px 0 18px 54px;}
+  @media(max-width:760px){.paso p.des{margin-left:0;}}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+  .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+  @media(max-width:980px){.grid5{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:860px){.grid2,.grid3,.grid4{grid-template-columns:1fr 1fr;}}
+  @media(max-width:620px){.grid5{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.grid2,.grid3,.grid4,.grid5{grid-template-columns:1fr;}}
+  @media(max-width:720px){
+    .selector-anio-shell{align-items:stretch;flex-direction:column;padding:15px;}
+    .selector-anio{flex-basis:auto;width:100%;}
+  }
+  @media(max-width:420px){.selector-anio{grid-template-columns:1fr}.btn-anio{min-height:58px;}}
+
+  .campo{margin-bottom:14px;}
+  .campo label{display:block;font-weight:700;font-size:13px;color:var(--azul-corp);margin-bottom:6px;}
+  .campo .valor{color:var(--naranja);font-weight:800;}
+  input[type=number],input[type=text]{
+    width:100%;padding:10px 12px;border:1.5px solid var(--azul-gris);border-radius:12px;
+    font-family:'Montserrat',sans-serif;font-size:15px;font-weight:700;color:var(--azul-corp);
+  }
+  input:focus,select:focus,button:focus-visible{outline:2px solid var(--naranja);outline-offset:2px;border-color:var(--naranja);}
+  input[type=range]{width:100%;accent-color:var(--naranja);height:28px;cursor:pointer;}
+  select{
+    padding:8px 10px;border:1.5px solid var(--azul-gris);border-radius:10px;
+    font-family:'Montserrat',sans-serif;font-size:12px;font-weight:700;
+    color:var(--azul-corp);background:var(--blanco);cursor:pointer;max-width:170px;
+  }
+
+  .subtit{font-weight:800;text-transform:uppercase;font-size:13px;color:var(--naranja);letter-spacing:.5px;margin:16px 0 10px;}
+
+  .mini{background:linear-gradient(145deg,#F7F9FB,#EEF2F5);border:1px solid #E7EDF1;border-radius:16px;padding:13px 14px;text-align:center;transition:transform .2s ease,box-shadow .2s ease;}
+  .mini:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(21,33,47,.09);}
+  .mini .et{font-size:11px;font-weight:700;color:var(--azul-gris);text-transform:uppercase;letter-spacing:.4px;}
+  .mini .ci{font-size:17.5px;font-weight:800;color:var(--azul-corp);margin-top:2px;}
+  .mini small{display:block;color:var(--azul-gris);font-size:10.5px;font-weight:700;margin-top:3px;}
+  .mini.destacada{background:var(--azul-profundo);}
+  .mini.destacada .ci{color:var(--naranja);}
+  .mini.destacada .et{color:var(--azul-gris);}
+
+  .bolsas-encabezado{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:24px 0 12px;}
+  .bolsas-encabezado h3{font-size:14px;font-weight:800;text-transform:uppercase;letter-spacing:.45px;color:var(--azul-corp);}
+  .bolsas-encabezado p{font-size:11.5px;color:#687D90;text-align:right;}
+  .bolsas-showcase{display:grid;grid-template-columns:repeat(4,minmax(220px,1fr));gap:14px;}
+  .svg-defs{position:absolute;width:0;height:0;overflow:hidden;}
+  .bolsa-card{
+    position:relative;overflow:hidden;min-height:178px;padding:18px;
+    border:1px solid #E1E8ED;border-radius:20px;
+    background:linear-gradient(145deg,#FFFFFF,#F1F4F7);
+    box-shadow:0 12px 32px rgba(21,33,47,.07);
+    transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;
+  }
+  .bolsa-card:hover{transform:translateY(-4px);box-shadow:0 20px 42px rgba(21,33,47,.12);border-color:#CFDAE2;}
+  .bolsa-card::after{content:'';position:absolute;width:130px;height:130px;border-radius:50%;right:-68px;top:-78px;background:rgba(14,105,116,.07);}
+  .bolsa-card.principal{
+    background:radial-gradient(circle at 100% 0%,rgba(14,105,116,.55),transparent 15rem),linear-gradient(135deg,#101A26,var(--azul-profundo));
+    border-color:rgba(130,150,169,.35);color:var(--blanco);box-shadow:0 16px 38px rgba(21,33,47,.2);
+  }
+  .bolsa-cabecera{display:flex;align-items:center;gap:11px;position:relative;z-index:1;}
+  .bolsa-icono{width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:rgba(217,137,24,.13);flex:0 0 48px;}
+  .bolsa-icono svg{width:34px;height:39px;filter:drop-shadow(0 5px 7px rgba(217,137,24,.2));}
+  .bolsa-icono .saco{fill:url(#gradBolsa);}
+  .bolsa-icono text{font:800 25px Montserrat,Arial,sans-serif;fill:#fff;}
+  .bolsa-card.principal .bolsa-icono{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);}
+  .bolsa-titulo{font-size:10.5px;font-weight:800;color:var(--azul-gris);text-transform:uppercase;letter-spacing:.55px;}
+  .bolsa-monto{font-size:clamp(18px,1.45vw,23px);font-weight:800;color:var(--azul-corp);font-variant-numeric:tabular-nums;margin-top:2px;}
+  .bolsa-card.principal .bolsa-monto{color:var(--naranja-vivo);}
+  .bolsa-card.principal .bolsa-titulo{color:#A7B7C6;}
+  .bolsa-flujo{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:7px;margin-top:16px;position:relative;z-index:1;}
+  .bolsa-flujo span{background:rgba(130,150,169,.1);border-radius:11px;padding:8px 9px;font-size:9px;font-weight:700;color:var(--azul-gris);text-transform:uppercase;letter-spacing:.25px;}
+  .bolsa-flujo span b{display:block;color:var(--azul-corp);font-size:11px;margin-top:2px;white-space:nowrap;font-variant-numeric:tabular-nums;}
+  .bolsa-flujo i{font-style:normal;font-weight:800;color:var(--naranja);font-size:15px;}
+  .bolsa-card.principal .bolsa-flujo span{background:rgba(255,255,255,.08);color:#93A6B7;}
+  .bolsa-card.principal .bolsa-flujo span b{color:#fff;}
+  @media(max-width:1180px){.bolsas-showcase{grid-template-columns:repeat(2,minmax(220px,1fr));}}
+  @media(max-width:600px){.bolsas-showcase{grid-template-columns:1fr}.bolsas-encabezado{align-items:start;flex-direction:column}.bolsas-encabezado p{text-align:left}}
+
+  .canales{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .btn-canal{
+    font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px;
+    text-transform:uppercase;letter-spacing:.4px;border-radius:999px;
+    padding:9px 20px;cursor:pointer;
+    border:2px solid var(--azul-gris);background:var(--blanco);color:var(--azul-corp);
+  }
+  .btn-canal.activo{background:var(--naranja);border-color:var(--naranja);color:var(--blanco);}
+
+  .escenario-panel{
+    margin:0 0 20px;padding:20px;border-radius:20px;
+    background:
+      radial-gradient(circle at 90% 5%,rgba(14,105,116,.4),transparent 20rem),
+      linear-gradient(135deg,var(--azul-profundo),#24394C);
+    color:var(--blanco);box-shadow:0 18px 42px rgba(21,33,47,.18);
+  }
+  .escenario-controles{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+  .escenario-control{background:rgba(255,255,255,.07);border:1px solid rgba(130,150,169,.45);border-radius:16px;padding:15px 16px;}
+  .escenario-control label{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.45px;}
+  .escenario-control output{color:var(--naranja);font-size:24px;font-weight:800;}
+  .escenario-control input[type=range]{margin-top:8px;}
+  .presets{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+  .preset{
+    border:1px solid rgba(255,255,255,.25);background:transparent;color:var(--blanco);
+    border-radius:999px;padding:5px 10px;cursor:pointer;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;
+  }
+  .preset.activo{background:var(--naranja);border-color:var(--naranja);}
+  .equivalencia-margen{margin-top:10px;padding-top:9px;border-top:1px solid rgba(255,255,255,.14);font-size:11px;color:var(--azul-gris);}
+  .equivalencia-margen b{color:var(--blanco);font-size:14px;}
+  .escenario-resumen{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:14px;}
+  .escenario-resumen span{border-radius:999px;padding:6px 11px;background:rgba(255,255,255,.09);font-size:11px;color:var(--azul-gris);}
+  .escenario-resumen b{color:var(--blanco);}
+  .tablas-anuales{grid-template-columns:1fr;gap:16px;}
+  @media(max-width:680px){.escenario-controles{grid-template-columns:1fr}.escenario-panel{padding:15px}}
+
+  .tabla-scroll{overflow:auto;scrollbar-color:var(--azul-gris) var(--fondo-suave);scrollbar-width:thin;border-radius:14px;}
+  table.liq{width:100%;border-collapse:collapse;font-size:12.5px;min-width:960px;}
+  .liq th{
+    background:var(--azul-corp);color:var(--blanco);font-weight:700;
+    padding:9px 10px;text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.3px;
+    position:sticky;top:0;z-index:3;
+  }
+  .liq th:first-child{text-align:left;}
+  .liq td{padding:7px 10px;border-bottom:1px solid #EDF0F3;text-align:center;font-weight:700;color:var(--azul-corp);font-variant-numeric:tabular-nums;}
+  .liq tr:nth-child(even) td{background:var(--fondo-suave);}
+  .liq td.rol{text-align:left;font-weight:700;}
+  .liq td.rol small{display:block;font-weight:300;color:var(--azul-gris);font-size:10.5px;}
+  .liq input{width:76px;padding:6px 6px;font-size:12.5px;text-align:right;border-radius:10px;}
+  .liq input.dinero{width:118px;}
+  .liq td.pago{color:var(--naranja);font-weight:800;text-align:right;font-size:13px;}
+  .liq td.dato-real{font-size:11px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .liq td.dato-real small{display:block;color:#0E6974;font-size:9px;font-weight:800;margin-top:2px;}
+  .tasa-margen{display:block;margin-top:3px;color:#0E6974;font-size:9px;font-weight:800;white-space:nowrap;}
+  .liq tbody tr{transition:filter .16s ease;}
+  .liq tbody tr:hover td{filter:brightness(.98);}
+  .liq td.hoy,.liq th.hoy{background:rgba(217,137,24,.18)!important;}
+  .liq tr.escenario td{background:rgba(217,137,24,.10)!important;color:var(--naranja);font-weight:800;}
+  .liq tr.comision td{background:rgba(14,105,116,.08)!important;color:#0E6974;font-weight:800;}
+  .liq tr.comision td:first-child{border-left:4px solid #0E6974;}
+  .liq tr.comision-escenario td{background:rgba(217,137,24,.14)!important;color:#9B6410;}
+  .liq tr.comision-escenario td:first-child{border-left-color:var(--naranja);}
+  #tablaNota{table-layout:fixed!important;width:100%;min-width:0!important;font-size:clamp(8px,.68vw,10.5px);}
+  #tablaNota th,#tablaNota td{padding:7px 4px;white-space:nowrap;overflow:hidden;text-overflow:clip;}
+  #tablaNota th:first-child,#tablaNota td:first-child{width:16%;white-space:normal;line-height:1.25;padding-left:9px;padding-right:7px;}
+  #tablaNota th:not(:first-child),#tablaNota td:not(:first-child){width:6.46%;text-align:center;}
+  #tablaNota td.pago{font-size:inherit;text-align:center;}
+  @media(max-width:1050px){
+    #tablaNota{font-size:7.5px;}
+    #tablaNota th,#tablaNota td{padding:6px 2px;}
+    #tablaNota th:first-child,#tablaNota td:first-child{width:17%;}
+  }
+  .liq td.gcab{
+    background:var(--azul-profundo)!important;color:var(--blanco);
+    text-align:left;font-weight:800;text-transform:uppercase;font-size:11.5px;letter-spacing:.4px;
+    padding:9px 12px;
+  }
+  .liq td.gcab b{color:var(--naranja);}
+  .liq td.gcab .peq{font-weight:300;text-transform:none;letter-spacing:0;color:var(--azul-gris);}
+  .liq th.mkt{background:#0E5964;}
+  .liq td.mkt{background:rgba(14,89,100,.08)!important;}
+  .liq td.mkt-factor{color:#0E5964;font-weight:800;}
+  .liq th.bolsita-th{background:linear-gradient(135deg,#9B6410,var(--naranja));min-width:210px;}
+  .liq td.celda-bolsita{
+    min-width:210px;padding:8px 11px!important;background:#FFFDF9!important;
+    border-left:1px solid rgba(217,137,24,.16);border-right:1px solid rgba(217,137,24,.16);
+  }
+  .bolsita-control{display:flex;align-items:center;gap:10px;text-align:left;}
+  .bolsita-medidor{
+    --p:0%;position:relative;width:48px;height:48px;border-radius:15px;flex:0 0 48px;
+    display:grid;place-items:center;
+    background:conic-gradient(var(--naranja) var(--p),#E7ECF0 0);
+    box-shadow:0 5px 15px rgba(21,33,47,.11);
+  }
+  .bolsita-medidor::before{content:'';position:absolute;inset:4px;border-radius:12px;background:#fff;}
+  .bolsita-medidor svg{position:relative;z-index:1;width:27px;height:33px;filter:drop-shadow(0 3px 5px rgba(217,137,24,.22));}
+  .bolsita-editor{min-width:0;flex:1;}
+  .bolsita-editor label{display:flex;align-items:center;justify-content:space-between;gap:7px;font-size:9px;font-weight:800;color:var(--azul-gris);text-transform:uppercase;letter-spacing:.3px;}
+  .bolsita-editor output{font-size:14px;color:var(--naranja);font-weight:800;font-variant-numeric:tabular-nums;}
+  .liq .bolsita-editor input[type=range]{width:100%;height:18px;padding:0;border:0;border-radius:0;accent-color:var(--naranja);cursor:pointer;}
+  .bolsita-editor small{display:block;margin-top:1px;font-size:8.5px;color:#92A2B0;font-weight:700;}
+  .liq tfoot td{background:var(--azul-profundo)!important;color:var(--blanco);font-weight:800;border-bottom:none;}
+  .liq tfoot td.pago{color:var(--naranja);}
+  .aviso{
+    display:none;margin-top:10px;font-size:13px;font-weight:700;color:var(--azul-corp);
+    background:rgba(217,137,24,.14);border:1px solid var(--naranja);border-radius:12px;padding:9px 14px;
+  }
+
+  .resultado{
+    background:
+      radial-gradient(circle at 84% 0%,rgba(14,105,116,.5),transparent 25rem),
+      linear-gradient(125deg,#101A26,var(--azul-profundo) 54%,#24394C);
+    border-radius:28px;padding:32px 28px;margin-top:32px;color:var(--blanco);
+    box-shadow:0 24px 58px rgba(21,33,47,.22);position:relative;overflow:hidden;
+  }
+  .resultado::after{content:'';position:absolute;width:180px;height:180px;border-radius:50%;right:-75px;bottom:-125px;border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 34px rgba(255,255,255,.025);}
+  .resultado h2{font-weight:800;text-transform:uppercase;font-size:19px;letter-spacing:.4px;margin-bottom:18px;text-align:center;}
+  .kpis{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;}
+  .kpi{
+    background:rgba(255,255,255,.07);border:1px solid rgba(130,150,169,.4);
+    border-radius:16px;padding:14px 20px;text-align:center;min-width:160px;
+    backdrop-filter:blur(7px);transition:transform .2s ease,background .2s ease;
+  }
+  .kpi:hover{transform:translateY(-3px);background:rgba(255,255,255,.11);}
+  .kpi .fe{font-size:10.5px;font-weight:700;color:var(--azul-gris);text-transform:uppercase;letter-spacing:.4px;}
+  .kpi .fv{font-size:19px;font-weight:800;color:var(--blanco);margin-top:2px;font-variant-numeric:tabular-nums;}
+  .kpi.principal .fv{color:var(--naranja);font-size:25px;}
+
+  .acciones{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:26px;}
+  button.accion{
+    font-family:'Montserrat',sans-serif;font-weight:800;font-size:13.5px;
+    text-transform:uppercase;letter-spacing:.5px;cursor:pointer;
+    border:none;border-radius:999px;padding:13px 28px;transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;
+  }
+  .btn-primario{background:linear-gradient(135deg,var(--naranja-vivo),var(--naranja));color:var(--blanco);box-shadow:0 10px 24px rgba(217,137,24,.24);}
+  .btn-secundario{background:var(--blanco);color:var(--azul-corp);border:2px solid var(--azul-gris);}
+  button:hover{opacity:.94;transform:translateY(-1px);}
+
+  details{
+    margin-top:26px;border:1px solid #E1E6EB;border-radius:18px;
+    padding:16px 22px;background:var(--blanco);
+  }
+  summary{font-weight:700;font-size:14px;color:var(--azul-corp);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;}
+  summary::before{content:'▸';color:var(--naranja);font-size:15px;transition:transform .15s;}
+  details[open] summary::before{transform:rotate(90deg);}
+  .tablas{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:18px;}
+  .tablas table{
+    width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px;
+    border:1px solid #E1E6EB;border-radius:18px;overflow:hidden;background:var(--blanco);
+  }
+  .tablas caption{
+    caption-side:top;text-align:left;
+    font-weight:800;font-size:12.5px;text-transform:uppercase;letter-spacing:.5px;
+    color:var(--azul-corp);padding:14px 16px 10px;
+  }
+  .tablas caption::before{
+    content:'';display:inline-block;width:10px;height:10px;border-radius:50%;
+    background:var(--naranja);margin-right:9px;
+  }
+  .tablas th{
+    background:var(--azul-profundo);color:var(--blanco);font-weight:700;
+    padding:10px 14px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.5px;
+  }
+  .tablas td{padding:9px 14px;border-bottom:1px solid #EDF0F3;color:var(--azul-corp);font-weight:300;}
+  .tablas td:last-child{font-weight:700;}
+  .tablas tr:nth-child(even) td{background:var(--fondo-suave);}
+  .tablas tr:last-child td{border-bottom:none;}
+  .tablas table.pasos td:first-child{font-weight:800;white-space:nowrap;color:var(--naranja);}
+  .tablas table.pasos td:last-child{font-weight:300;}
+  .tablas table.acelerador-mkt{border-color:rgba(14,89,100,.45);box-shadow:0 12px 30px rgba(14,89,100,.10);}
+  .tablas table.acelerador-mkt caption{color:#0E5964;}
+  .tablas table.acelerador-mkt caption::before{background:#0E5964;box-shadow:0 0 0 5px rgba(14,89,100,.12);}
+  .tablas table.acelerador-mkt th{background:#0E5964;}
+
+  footer{text-align:center;color:var(--azul-gris);font-size:12px;padding:30px 0 40px;margin-top:10px;}
+  footer .autor{display:block;color:var(--azul-corp);font-weight:800;margin-top:7px;}
+
+  @keyframes pulso{0%{box-shadow:0 0 0 0 rgba(102,215,165,.5)}70%{box-shadow:0 0 0 8px rgba(102,215,165,0)}100%{box-shadow:0 0 0 0 rgba(102,215,165,0)}}
+  @keyframes entrada{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+  header{animation:entrada .45s ease both;}
+  .paso,.resultado,details{animation:entrada .5s ease both;}
+  .paso:nth-of-type(2){animation-delay:.05s}.paso:nth-of-type(3){animation-delay:.1s}.resultado{animation-delay:.12s}
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  }
+
+  @media(min-width:1450px){
+    .paso{padding:30px 34px 26px;}
+    .liq th{padding:10px 12px;}
+    .liq td{padding:8px 12px;}
+    .mini{padding:15px 16px;}
+  }
+
+  @media print{
+    .acciones,details{display:none!important;}
+    header{border-radius:0;}
+    .paso,.resultado{break-inside:avoid;border-radius:12px;}
+    body{font-size:11px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="contenedor">
+    <div class="selector-anio-shell" aria-label="Selector del año de liquidación">
+      <div class="selector-anio-copy"><small>Modelo de liquidación</small><strong>Selecciona el ejercicio que quieres consultar</strong></div>
+      <div class="selector-anio" role="group" aria-label="Año">
+        <button type="button" class="btn-anio activo" data-anio="2026" aria-pressed="true"><span>2026</span><small>Seleccionado por defecto</small></button>
+        <button type="button" class="btn-anio" data-anio="2027" aria-pressed="false"><span>2027</span><small>Modelo vigente configurado</small></button>
+      </div>
+    </div>
+    <h1 id="tituloApp">Liquidador de Bono Comercial 2026</h1>
+    <div class="meta">
+      <span>Periodo: <b id="metaMes">—</b></span>
+      <span>Fecha de cálculo: <b id="fechaCalc">—</b></span>
+      <span>PPTO anual: <b id="metaPpto">—</b></span>
+      <span>Margen objetivo: <b>25%</b></span>
+      <span>Bolsa: <b id="metaBolsa">2.0% de ventas · candado 12% del margen</b></span>
+      <span id="fuenteSheets">Sheets: <b id="metaSheets">conectando…</b></span>
+      <span class="estado-app"><i aria-hidden="true"></i><b>Cálculo en vivo</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="contenedor">
+
+  <!-- ============ PASO 1: RESULTADOS DEL MES POR CANAL ============ -->
+  <section class="paso">
+    <div class="paso-titulo"><div class="num">1</div><h2>Resultados reales del mes por canal</h2></div>
+    <div class="grid2">
+      <div class="campo">
+        <label>Mes a liquidar</label>
+        <select id="mes" style="max-width:none;width:100%;font-size:14px;padding:10px 12px"></select>
+      </div>
+      <div class="campo">
+        <label>Bolsa: % sobre ventas: <span class="valor" id="vBolsaPct">2.0%</span></label>
+        <input type="range" id="bolsaPct" min="0.5" max="4" value="2" step="0.1">
+      </div>
+    </div>
+
+    <div class="tabla-scroll">
+      <table class="liq">
+        <thead>
+          <tr>
+            <th>Canal</th>
+            <th>Obj. ventas</th>
+            <th>Ventas reales</th>
+            <th>Obj. margen</th>
+            <th>Margen real</th>
+            <th>Cumpl. V</th>
+            <th>Cumpl. M</th>
+            <th>Combinado V70/M30</th>
+            <th>Activación</th>
+            <th>Bolsa del mes</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoCanales"></tbody>
+      </table>
+    </div>
+
+    <div class="bolsas-encabezado">
+      <h3>Bolsas activadas del mes</h3>
+      <p>Bolsa base (el menor) × activación del canal = bolsa generada</p>
+    </div>
+    <div class="bolsas-showcase" aria-label="Bolsas generadas por canal" aria-live="polite">
+      <svg class="svg-defs" aria-hidden="true">
+        <defs>
+          <linearGradient id="gradBolsa" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#F2A52B"/>
+            <stop offset="1" stop-color="#C8750B"/>
+          </linearGradient>
+          <symbol id="iconoBolsa" viewBox="0 0 80 96">
+            <path d="M27 8h26l6 11-10 8c13 8 22 23 22 39 0 17-13 25-31 25S9 83 9 66c0-16 9-31 22-39l-10-8 6-11Z" fill="url(#gradBolsa)"/>
+            <path d="M24 25h32" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".78"/>
+            <text x="40" y="68" text-anchor="middle" fill="#fff" font-family="Montserrat,Arial,sans-serif" font-size="25" font-weight="800">$</text>
+          </symbol>
+        </defs>
+      </svg>
+
+      <article class="bolsa-card">
+        <div class="bolsa-cabecera">
+          <span class="bolsa-icono" aria-hidden="true"><svg><use href="#iconoBolsa"/></svg></span>
+          <div><div class="bolsa-titulo">Bolsa Retail</div><div class="bolsa-monto" id="bv-monto-retail">—</div></div>
+        </div>
+        <div class="bolsa-flujo">
+          <span>Base menor<b id="bv-base-retail">—</b></span><i>×</i><span>Activación<b id="bv-act-retail">—</b></span>
+        </div>
+      </article>
+
+      <article class="bolsa-card">
+        <div class="bolsa-cabecera">
+          <span class="bolsa-icono" aria-hidden="true"><svg><use href="#iconoBolsa"/></svg></span>
+          <div><div class="bolsa-titulo">Bolsa Mayoreo</div><div class="bolsa-monto" id="bv-monto-mayoreo">—</div></div>
+        </div>
+        <div class="bolsa-flujo">
+          <span>Base menor<b id="bv-base-mayoreo">—</b></span><i>×</i><span>Activación<b id="bv-act-mayoreo">—</b></span>
+        </div>
+      </article>
+
+      <article class="bolsa-card">
+        <div class="bolsa-cabecera">
+          <span class="bolsa-icono" aria-hidden="true"><svg><use href="#iconoBolsa"/></svg></span>
+          <div><div class="bolsa-titulo">Bolsa Catálogo</div><div class="bolsa-monto" id="bv-monto-catalogo">—</div></div>
+        </div>
+        <div class="bolsa-flujo">
+          <span>Base menor<b id="bv-base-catalogo">—</b></span><i>×</i><span>Activación<b id="bv-act-catalogo">—</b></span>
+        </div>
+      </article>
+
+      <article class="bolsa-card principal">
+        <div class="bolsa-cabecera">
+          <span class="bolsa-icono" aria-hidden="true"><svg><use href="#iconoBolsa"/></svg></span>
+          <div><div class="bolsa-titulo">Bolsa Global · Σ canales</div><div class="bolsa-monto" id="bv-monto-total">—</div></div>
+        </div>
+        <div class="bolsa-flujo">
+          <span>Σ bases<b id="bv-base-total">—</b></span><i>×</i><span>Activación efectiva<b id="bv-act-total">—</b></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ NOTA: PPTO POR CANAL ============ -->
+  <section class="paso">
+    <div class="paso-titulo"><div class="num nota">N</div><h2 id="tituloNota">Nota · PPTO 2026 por canal</h2></div>
+    <p class="des">Ventas en miles de pesos y comisiones estimadas en pesos. Global muestra la comisión de Dirección; cada canal muestra la comisión disponible para toda su organización después de la retención, antes del score y aceleradores individuales.</p>
+    <div class="canales" id="botonesCanal"></div>
+    <div class="tabla-scroll">
+      <table class="liq" id="tablaNota">
+        <thead><tr id="notaEncabezado"></tr></thead>
+        <tbody>
+          <tr id="notaFila"></tr>
+          <tr class="comision" id="notaComision100"></tr>
+          <tr class="escenario" id="notaFilaEscenario"></tr>
+          <tr class="comision comision-escenario" id="notaComision80"></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ PASO 2: LIQUIDACIÓN POR EQUIPO ============ -->
+  <section class="paso">
+    <div class="paso-titulo"><div class="num">2</div><h2>Liquidación por equipo</h2></div>
+    <p class="des" id="descLiquidacion">Cada rol recupera su bolsita editable dentro de la liquidación mensual. La bolsita de Dirección controla la retención sobre la suma global; las bolsitas de cada equipo reparten el remanente de su canal y deben sumar 100%. Si Sheets está vacío, Ventas, Margen, Forecast, Moldes/ROI y Alcance MKT usan 100% como referencia. Score individual = ventas 70% + margen 30%, ajustado por los tres aceleradores.</p>
+
+    <div class="tabla-scroll">
+      <table class="liq" style="min-width:1740px">
+        <thead>
+          <tr>
+            <th>Rol</th>
+            <th class="bolsita-th">Bolsita editable</th>
+            <th>Bolsa asignada</th>
+            <th>Venta real</th>
+            <th>Margen real</th>
+            <th>Cumpl. margen %</th>
+            <th>Cumpl. ventas %</th>
+            <th>Score</th>
+            <th>Forecast %</th>
+            <th>F. forecast</th>
+            <th>Moldes %</th>
+            <th>F. moldes</th>
+            <th class="mkt">Alcance MKT %</th>
+            <th class="mkt">F. MKT</th>
+            <th>Pago</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoLiq"></tbody>
+        <tfoot>
+          <tr>
+            <td style="text-align:left" colspan="14">TOTAL A PAGAR DEL MES</td>
+            <td class="pago" id="tPago">—</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="aviso" id="avisoSuma"></div>
+  </section>
+
+  <!-- ============ RESUMEN ============ -->
+  <section class="resultado">
+    <h2>Resumen del pago del mes</h2>
+    <div class="kpis">
+      <div class="kpi"><div class="fe">Bolsa global (Σ canales)</div><div class="fv" id="kGlobal">—</div></div>
+      <div class="kpi"><div class="fe">Retención dirección</div><div class="fv" id="kCanales">—</div></div>
+      <div class="kpi principal" role="status" aria-live="polite"><div class="fe">Total a pagar</div><div class="fv" id="kTotal">—</div></div>
+      <div class="kpi"><div class="fe">Costo vs ventas reales</div><div class="fv" id="kPctVentas">—</div></div>
+    </div>
+  </section>
+
+  <!-- ============ VISTA ANUAL ============ -->
+  <section class="paso">
+    <div class="paso-titulo"><div class="num nota">A</div><h2 id="tituloAnual">Vista anual 2026</h2></div>
+    <p class="des">Simula ventas y margen por debajo o por encima del 100%. Tanto la activación como el score individual ponderan Ventas 70% y Margen 30%. Los cumplimientos aplicados están topados en 100% y los aceleradores se mantienen en 1.00x para aislar el efecto comercial.</p>
+
+    <div class="escenario-panel">
+      <div class="escenario-controles">
+        <div class="escenario-control">
+          <label for="escVentas">Cumplimiento de ventas <output id="vEscVentas">100%</output></label>
+          <input type="range" id="escVentas" min="0" max="150" value="100" step="1">
+          <div class="presets">
+            <button type="button" class="preset" data-esc="ventas" data-valor="80" onclick="setEscenario('ventas',80)">80%</button>
+            <button type="button" class="preset" data-esc="ventas" data-valor="90" onclick="setEscenario('ventas',90)">90%</button>
+            <button type="button" class="preset" data-esc="ventas" data-valor="100" onclick="setEscenario('ventas',100)">100%</button>
+            <button type="button" class="preset" data-esc="ventas" data-valor="120" onclick="setEscenario('ventas',120)">120%</button>
+          </div>
+        </div>
+        <div class="escenario-control">
+          <label for="escMargen">Cumplimiento de margen <output id="vEscMargen">100%</output></label>
+          <input type="range" id="escMargen" min="0" max="150" value="100" step="1">
+          <div class="presets">
+            <button type="button" class="preset" data-esc="margen" data-valor="80" onclick="setEscenario('margen',80)">80%</button>
+            <button type="button" class="preset" data-esc="margen" data-valor="90" onclick="setEscenario('margen',90)">90%</button>
+            <button type="button" class="preset" data-esc="margen" data-valor="100" onclick="setEscenario('margen',100)">100%</button>
+            <button type="button" class="preset" data-esc="margen" data-valor="120" onclick="setEscenario('margen',120)">120%</button>
+          </div>
+          <div class="equivalencia-margen">Margen resultante sobre ventas: <b id="vEscMargenReal">25.0%</b></div>
+        </div>
+      </div>
+      <div class="escenario-resumen">
+        <span>Combinado activación V70/M30: <b id="anCombinado">—</b></span>
+        <span>Activación de bolsa: <b id="anFactorActivacion">—</b></span>
+        <span>Score individual V70/M30: <b id="anScore">—</b></span>
+      </div>
+    </div>
+
+    <div class="grid5">
+      <div class="mini"><div class="et">Ventas del escenario</div><div class="ci" id="anVentas">—</div><small id="anVentasPct">—</small></div>
+      <div class="mini"><div class="et">Margen del escenario</div><div class="ci" id="anMargen">—</div><small id="anMargenPct">—</small></div>
+      <div class="mini"><div class="et">Activación de bolsa</div><div class="ci" id="anActivacion">—</div><small>Combinado V70/M30</small></div>
+      <div class="mini"><div class="et">Bolsa anual activada</div><div class="ci" id="anBolsa">—</div><small>Antes del score individual</small></div>
+      <div class="mini destacada"><div class="et">Total a pagar</div><div class="ci" id="anTotal">—</div><small id="anPct">—</small></div>
+    </div>
+
+    <div class="grid2 tablas-anuales" style="margin-top:18px">
+      <div class="tabla-scroll">
+        <table class="liq" style="min-width:720px">
+          <thead><tr><th>Bolsa</th><th>Ventas escenario</th><th>Margen escenario</th><th>Activación</th><th>Bolsa activada</th></tr></thead>
+          <tbody id="anBolsas"></tbody>
+        </table>
+      </div>
+      <div class="tabla-scroll">
+        <table class="liq" style="min-width:560px">
+          <thead><tr><th>Rol</th><th>Part. %</th><th>Score</th><th>Pago anual escenario</th></tr></thead>
+          <tbody id="anRoles"></tbody>
+          <tfoot><tr><td style="text-align:left" colspan="3">TOTAL A PAGAR DEL ESCENARIO</td><td class="pago" id="anTotalTabla">—</td></tr></tfoot>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <div class="acciones">
+    <button class="accion btn-primario" onclick="exportarCSV()">Exportar a CSV (nómina)</button>
+    <button class="accion btn-secundario" onclick="window.print()">Imprimir / PDF</button>
+  </div>
+
+  <!-- ============ TABLAS DE REFERENCIA ============ -->
+  <details>
+    <summary>Ver tablas de referencia del esquema</summary>
+    <div class="tablas">
+      <table>
+        <caption>Activación de la bolsa y pago por pilar</caption>
+        <tr><th>Cumplimiento</th><th>Paga</th></tr>
+        <tr><td>Menos de 80%</td><td>0%</td></tr>
+        <tr><td>80% a 89%</td><td>50%</td></tr>
+        <tr><td>90% a 94%</td><td>75%</td></tr>
+        <tr><td>95% a 99%</td><td>90%</td></tr>
+        <tr><td>100% o más (tope)</td><td>100%</td></tr>
+      </table>
+      <table>
+        <caption>Forecast (penalización)</caption>
+        <tr><th>Precisión</th><th>Factor</th></tr>
+        <tr><td>90% a 110%</td><td>1.00x</td></tr>
+        <tr><td>80–89% u 111–120%</td><td>0.95x</td></tr>
+        <tr><td>70–79% o 121–130%</td><td>0.90x</td></tr>
+        <tr><td>&lt;70% o &gt;130%</td><td>0.80x</td></tr>
+        <tr><td>Sin forecast formal (captura 0)</td><td>0.75x</td></tr>
+      </table>
+      <table>
+        <caption>Moldes / ROI (penaliza o acelera)</caption>
+        <tr><th>Cumplimiento</th><th>Factor</th></tr>
+        <tr><td>No aplica</td><td>1.00x</td></tr>
+        <tr><td>115% o más</td><td>1.10x</td></tr>
+        <tr><td>105% a 114%</td><td>1.05x</td></tr>
+        <tr><td>95% a 104%</td><td>1.00x</td></tr>
+        <tr><td>85% a 94%</td><td>0.95x</td></tr>
+        <tr><td>70% a 84%</td><td>0.90x</td></tr>
+        <tr><td>50% a 69%</td><td>0.80x</td></tr>
+        <tr><td>&lt;50% o sin seguimiento</td><td>0.70x</td></tr>
+      </table>
+      <table class="acelerador-mkt">
+        <caption>Alcance MKT · acelerador destacado</caption>
+        <tr><th>Cumplimiento</th><th>Factor</th></tr>
+        <tr><td>No aplica / vacío</td><td>1.00x</td></tr>
+        <tr><td>115% o más</td><td>1.25x</td></tr>
+        <tr><td>105% a 114%</td><td>1.15x</td></tr>
+        <tr><td>95% a 104%</td><td>1.08x</td></tr>
+        <tr><td>85% a 94%</td><td>1.00x</td></tr>
+        <tr><td>70% a 84%</td><td>0.95x</td></tr>
+        <tr><td>50% a 69%</td><td>0.90x</td></tr>
+        <tr><td>&lt;50% con seguimiento</td><td>0.75x</td></tr>
+      </table>
+      <table class="pasos" style="grid-column:1/-1">
+        <caption>Cómo funcionan venta y margen en el esquema</caption>
+        <tr><th style="width:230px">Paso</th><th>Cómo se calcula</th></tr>
+        <tr><td>1 · Cumplimiento de ventas</td><td>Ventas reales del canal ÷ objetivo del mes (PPTO <span id="anioReferencia">2026</span>)</td></tr>
+        <tr><td>2 · Cumplimiento de margen</td><td>Porcentaje de margen real sobre ventas reales ÷ meta de margen de 25%. Ejemplo: margen 20% ÷ meta 25% = 80% de cumplimiento</td></tr>
+        <tr><td>3 · Combinado</td><td>Para activar la bolsa pondera ventas 70% y margen 30%. Ejemplo: ventas 100% y margen 90% → combinado 97% → activa 90% de la bolsa</td></tr>
+        <tr><td>4 · Bolsa del canal</td><td>Se calcula por canal: MIN(% de bolsa × ventas reales, 12% × margen real) × factor de activación. El candado limita la bolsa cuando el margen real no alcanza para sostenerla</td></tr>
+        <tr><td>5 · Reparto</td><td>El Director retiene su % de la suma de bolsas; el equipo del canal reparte el resto según su participación</td></tr>
+        <tr><td>6 · Score individual</td><td>Cada pilar se convierte primero en un factor según la tabla de tramos; el score base combina Ventas 70% y Margen 30%, y después se multiplica por Forecast, Moldes/ROI y Alcance MKT. La activación también usa V70/M30, pero se calcula por separado sobre el cumplimiento combinado</td></tr>
+      </table>
+    </div>
+  </details>
+
+  <footer><span class="autor">Elaborado por Roberto Saucedo</span></footer>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+const mxn = new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+const pct1 = v => v.toFixed(1)+'%';
+const topeCumplimiento = v => Math.min(100,Math.max(0,Number(v)||0));
+const PESO_ACT_VENTAS = 0.70;
+const PESO_ACT_MARGEN = 0.30;
+const PESO_SCORE_VENTAS = 0.70;
+const PESO_SCORE_MARGEN = 0.30;
+const REFERENCIA_VENTAS = 80;
+let ANIO_LIQUIDACION = 2026;
+const SHEET_CONFIG = {
+  id:'1t_5Z-R1erEf_jfyTUyLusK8dyP-dWA1CRiVKc1ueZaE',
+  gid:'1329558642',
+  pestaña:'COMISIONES',
+  rango:'A1:I1000'
+};
+
+$('fechaCalc').textContent = new Date().toLocaleDateString('es-MX',{day:'2-digit',month:'long',year:'numeric'});
+
+// ---- PPTO mensual por canal (miles de pesos) ----
+const MESES = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];
+const NOMBRES_MES = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const PPTO_POR_ANIO = {
+  2026:{
+    total:    {nombre:'Ventas netas (global)', m:[10028.235,10773.301,15627.900,13682.558,18615.443,20835.655,19067.094,17655.181,19951.338,13502.908,17408.746,14020.223]},
+    retail:   {nombre:'Retail HD', m:[9124.833,9248.301,13627.900,10942.558,14105.443,17600.655,15617.094,13455.181,15831.338,10402.908,12753.746,12100.223]},
+    mayoreo:  {nombre:'Mayoreo', m:[503.402,725,1100,1540,2900,2060,2000,2900,2570,2000,2905,920]},
+    catalogo: {nombre:'Catálogo',m:[400,800,900,1200,1610,1175,1450,1300,1550,1100,1750,1000]}
+  },
+  2027:{
+    total:    {nombre:'Ventas netas (global)', m:[10569,13878,15274,13556,20621,21959,21623,20317,22440,16480,20089,15183]},
+    retail:   {nombre:'Retail',   m:[8455,11102,12219,10845,16497,17567,17298,16254,17952,13184,16072,12146]},
+    mayoreo:  {nombre:'Mayoreo',  m:[1585,2082,2291,2033,3093,3294,3243,3048,3366,2472,3013,2277]},
+    catalogo: {nombre:'Catálogo', m:[528,694,764,678,1031,1098,1081,1016,1122,824,1004,759]}
+  }
+};
+let canales = PPTO_POR_ANIO[ANIO_LIQUIDACION];
+const anualCanal = k => canales[k].m.reduce((a,b)=>a+b,0) * 1000;
+
+// ---- Equipos y bolsas ----
+const GRUPOS_POR_ANIO = {
+  2026:[
+    {id:'global',nombre:'Bolsa Global',canal:'total',miembros:[{id:'dir',rol:'Director Comercial',def:35}]},
+    {id:'retail',nombre:'Bolsa Retail',canal:'retail',miembros:[{id:'gret',rol:'Gerente Retail',def:40},{id:'kr1',rol:'KAM Retail 1',def:30,estimado:true},{id:'kr2',rol:'KAM Retail 2',def:30,estimado:true}]},
+    {id:'mayoreo',nombre:'Bolsa Mayoreo',canal:'mayoreo',miembros:[{id:'gmay',rol:'Gerente Mayoreo',def:60},{id:'kmay',rol:'KAM Mayoreo',def:40,estimado:true}]},
+    {id:'catalogo',nombre:'Bolsa Catálogo',canal:'catalogo',miembros:[{id:'gcat',rol:'Gerente Catálogo',def:100}]}
+  ],
+  2027:[
+    {id:'global',nombre:'Bolsa Global',canal:'total',miembros:[{id:'dir',rol:'Director Comercial',def:35}]},
+    {id:'retail',nombre:'Bolsa Retail',canal:'retail',miembros:[{id:'gret',rol:'Gerente Retail',def:40},{id:'kr1',rol:'KAM Retail 1',def:30},{id:'kr2',rol:'KAM Retail 2',def:30}]},
+    {id:'mayoreo',nombre:'Bolsa Mayoreo',canal:'mayoreo',miembros:[{id:'gmay',rol:'Gerente Mayoreo',def:60},{id:'kmay',rol:'KAM Mayoreo',def:40}]},
+    {id:'catalogo',nombre:'Bolsa Catálogo',canal:'catalogo',miembros:[{id:'gcat',rol:'Gerente Catálogo',def:100}]}
+  ]
+};
+let grupos = GRUPOS_POR_ANIO[ANIO_LIQUIDACION];
+const CANALES_REALES = ['retail','mayoreo','catalogo'];
+// Objetivo global = suma de los canales (evita el desfase por redondeo del PPTO en miles)
+const sumaObjMes = i => CANALES_REALES.reduce((a,k)=>a + canales[k].m[i]*1000, 0);
+const sumaAnualCanales = () => CANALES_REALES.reduce((a,k)=>a + anualCanal(k), 0);
+
+// ---- Reglas del esquema ----
+function tramo(c){
+  if(c < 80)  return 0;
+  if(c < 90)  return 0.50;
+  if(c < 95)  return 0.75;
+  if(c < 100) return 0.90;
+  return 1.00;
+}
+function factorForecast(p){
+  if(!p || p <= 0) return 0.75;
+  if(p >= 90 && p <= 110) return 1.00;
+  if((p >= 80 && p < 90) || (p > 110 && p <= 120)) return 0.95;
+  if((p >= 70 && p < 80) || (p > 120 && p <= 130)) return 0.90;
+  return 0.80;
+}
+const numeroOpcional = v => {
+  if(v === '' || v === null || v === undefined) return null;
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+};
+function factorMoldes(valor){
+  const p = numeroOpcional(valor);
+  if(p === null) return 1.00;
+  if(p >= 115) return 1.10;
+  if(p >= 105) return 1.05;
+  if(p >= 95) return 1.00;
+  if(p >= 85) return 0.95;
+  if(p >= 70) return 0.90;
+  if(p >= 50) return 0.80;
+  return 0.70;
+}
+function factorMkt(valor){
+  const p = numeroOpcional(valor);
+  if(p === null) return 1.00;
+  if(p >= 115) return 1.25;
+  if(p >= 105) return 1.15;
+  if(p >= 95) return 1.08;
+  if(p >= 85) return 1.00;
+  if(p >= 70) return 0.95;
+  if(p >= 50) return 0.90;
+  return 0.75;
+}
+
+// ---- Construcción de la tabla de canales (Paso 1) ----
+const cuerpoCanales = $('cuerpoCanales');
+CANALES_REALES.forEach(k => {
+  const tr = document.createElement('tr');
+  tr.innerHTML = `
+    <td class="rol" id="nombre-canal-${k}">${canales[k].nombre}</td>
+    <td id="obj-${k}">—</td>
+    <td><input type="text" class="dinero" id="vr-${k}" inputmode="numeric"></td>
+    <td id="objm-${k}">—</td>
+    <td><input type="text" class="dinero" id="mr-${k}" inputmode="numeric"><small class="tasa-margen" id="tasa-m-${k}">—</small></td>
+    <td id="c1v-${k}">—</td>
+    <td id="c1m-${k}">—</td>
+    <td id="comb-${k}">—</td>
+    <td id="act-${k}">—</td>
+    <td class="pago" id="bolsa-${k}">—</td>`;
+  cuerpoCanales.appendChild(tr);
+});
+const trG = document.createElement('tr');
+trG.innerHTML = `
+  <td class="rol">GLOBAL (suma de canales)<small>Genera la bolsa del Director</small></td>
+  <td id="obj-total">—</td>
+  <td id="vr-total">—</td>
+  <td id="objm-total">—</td>
+  <td><span id="mr-total">—</span><small class="tasa-margen" id="tasa-m-total">—</small></td>
+  <td id="c1v-total">—</td>
+  <td id="c1m-total">—</td>
+  <td id="comb-total">—</td>
+  <td id="act-total">—</td>
+  <td class="pago" id="bolsa-total">—</td>`;
+cuerpoCanales.appendChild(trG);
+
+// ---- Construcción dinámica de liquidación y vista anual ----
+const cuerpoLiq = $('cuerpoLiq');
+const anBolsas = $('anBolsas'), anRoles = $('anRoles');
+function construirTablasRoles(){
+  cuerpoLiq.innerHTML = '';
+  anBolsas.innerHTML = '';
+  anRoles.innerHTML = '';
+  grupos.forEach(g => {
+    const cab = document.createElement('tr');
+    if(g.id === 'global'){
+      cab.innerHTML = `<td class="gcab" colspan="15">${g.nombre} <span class="peq">· retención sobre la suma de bolsas de canal</span> · Suma de bolsas: <b id="gb-${g.id}">—</b> · Retención dirección: <b id="gp-${g.id}">—</b></td>`;
+    } else {
+      cab.innerHTML = `<td class="gcab" colspan="15">${g.nombre} <span class="peq">· canal: ${canales[g.canal].nombre}</span> · Bolsa del mes: <b id="gb-${g.id}">—</b> · Repartible tras retención: <b id="gr-${g.id}">—</b> · Asignado: <b id="gp-${g.id}">—</b></td>`;
+    }
+    cuerpoLiq.appendChild(cab);
+    g.miembros.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="rol">${p.rol}${p.estimado ? '<small>Estimación con participación 2027</small>' : ''}</td>
+        <td class="celda-bolsita">
+          <div class="bolsita-control">
+            <span class="bolsita-medidor" id="bolsita-${p.id}" style="--p:${p.def}%;" aria-hidden="true">
+              <svg viewBox="0 0 80 96"><use href="#iconoBolsa"/></svg>
+            </span>
+            <div class="bolsita-editor">
+              <label for="part-${p.id}">Participación <output id="partv-${p.id}">${p.def}%</output></label>
+              <input type="range" id="part-${p.id}" value="${p.def}" min="0" max="100" step="0.5" aria-label="Participación de la bolsita de ${p.rol}">
+              <small>${g.id === 'global' ? 'Retención de Dirección' : 'Del remanente del canal'}</small>
+            </div>
+          </div>
+        </td>
+        <td id="asig-${p.id}">—</td>
+        <td class="dato-real" id="realv-${p.id}">—</td>
+        <td class="dato-real" id="realm-${p.id}">—</td>
+        <td><input type="number" id="cm-${p.id}" value="100" min="0" max="100" step="1"></td>
+        <td><input type="number" id="cv-${p.id}" value="100" min="0" max="100" step="1"></td>
+        <td id="score-${p.id}">—</td>
+        <td><input type="number" id="fc-${p.id}" value="100" min="0" max="200" step="1"></td>
+        <td id="ffc-${p.id}">—</td>
+        <td><input type="number" id="mol-${p.id}" value="100" min="0" max="300" step="1"></td>
+        <td id="fmol-${p.id}">—</td>
+        <td class="mkt"><input type="number" id="mkt-${p.id}" value="100" min="0" max="300" step="1"></td>
+        <td class="mkt mkt-factor" id="fmkt-${p.id}">—</td>
+        <td class="pago" id="pago-${p.id}">—</td>`;
+      cuerpoLiq.appendChild(tr);
+    });
+
+    const trAnual = document.createElement('tr');
+    trAnual.innerHTML = `<td class="rol">${g.nombre}</td><td id="anventa-${g.id}">—</td><td id="anmargen-${g.id}">—</td><td id="anact-${g.id}">—</td><td class="pago" id="anb-${g.id}">—</td>`;
+    anBolsas.appendChild(trAnual);
+    g.miembros.forEach(p => {
+      const trRol = document.createElement('tr');
+      trRol.innerHTML = `<td class="rol">${p.rol}<small>${g.nombre}${p.estimado ? ' · estimado con participación 2027' : ''}</small></td><td id="anp-${p.id}">—</td><td id="anscore-${p.id}">—</td><td class="pago" id="an-${p.id}">—</td>`;
+      anRoles.appendChild(trRol);
+    });
+  });
+}
+
+// ---- Selector de año, mes y nota PPTO ----
+const selMes = $('mes');
+function actualizarSelectorMes(){
+  const mesAnterior = Number.isInteger(+selMes.value) ? +selMes.value : 0;
+  selMes.innerHTML = '';
+  NOMBRES_MES.forEach((m,i) => {
+    const op = document.createElement('option');
+    op.value = i;
+    op.textContent = m + ' ' + ANIO_LIQUIDACION + ' · objetivo global ' + mxn.format(sumaObjMes(i));
+    selMes.appendChild(op);
+  });
+  selMes.value = String(Math.min(11,Math.max(0,mesAnterior)));
+}
+
+let canalNota = 'total';
+const botones = $('botonesCanal');
+Object.keys(canales).forEach(k => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'btn-canal' + (k===canalNota ? ' activo' : '');
+  b.textContent = k==='total' ? 'Total' : canales[k].nombre;
+  b.id = 'bc-' + k;
+  b.addEventListener('click', () => { canalNota = k; renderNota(); });
+  botones.appendChild(b);
+});
+function actualizarTextosAnio(){
+  document.title = 'Liquidador de Bono Comercial ' + ANIO_LIQUIDACION;
+  $('tituloApp').textContent = 'Liquidador de Bono Comercial ' + ANIO_LIQUIDACION;
+  $('tituloNota').textContent = 'Nota · PPTO ' + ANIO_LIQUIDACION + ' por canal';
+  $('tituloAnual').textContent = 'Vista anual ' + ANIO_LIQUIDACION;
+  $('anioReferencia').textContent = ANIO_LIQUIDACION;
+  $('metaPpto').textContent = '$' + Math.round(anualCanal('total')/1000).toLocaleString('es-MX') + ' miles';
+  $('descLiquidacion').textContent = ANIO_LIQUIDACION === 2026
+    ? 'Para 2026, los KAM se estiman provisionalmente con el reparto de 2027: Retail 40% Gerencia + 30% KAM 1 + 30% KAM 2; Mayoreo 60% Gerencia + 40% KAM. Dirección recibe su participación sobre la suma de Retail HD, Mayoreo y Catálogo. Si Sheets está vacío, Ventas, Margen y aceleradores usan el PPTO y 100% como referencia.'
+    : 'Cada rol recupera su bolsita editable dentro de la liquidación mensual. La bolsita de Dirección controla la retención sobre la suma global; las bolsitas de cada equipo reparten el remanente de su canal y deben sumar 100%. Si Sheets está vacío, Ventas, Margen, Forecast, Moldes/ROI y Alcance MKT usan 100% como referencia. Score individual = ventas 70% + margen 30%, ajustado por los tres aceleradores.';
+  document.querySelectorAll('.btn-anio').forEach(b => {
+    const activo = +b.dataset.anio === ANIO_LIQUIDACION;
+    b.classList.toggle('activo',activo);
+    b.setAttribute('aria-pressed',String(activo));
+  });
+  CANALES_REALES.forEach(k => {
+    const celda = $('nombre-canal-'+k);
+    if(celda) celda.textContent = canales[k].nombre;
+  });
+  Object.keys(canales).forEach(k => {
+    const boton = $('bc-'+k);
+    if(boton) boton.textContent = k === 'total' ? 'Total' : canales[k].nombre;
+  });
+}
+function seleccionarAnio(anio){
+  const nuevoAnio = Number(anio);
+  if(!PPTO_POR_ANIO[nuevoAnio] || nuevoAnio === ANIO_LIQUIDACION) return;
+  ANIO_LIQUIDACION = nuevoAnio;
+  canales = PPTO_POR_ANIO[ANIO_LIQUIDACION];
+  grupos = GRUPOS_POR_ANIO[ANIO_LIQUIDACION];
+  Object.keys(datosRealesRol).forEach(k => delete datosRealesRol[k]);
+  Object.keys(multiplicadorBolsitaRol).forEach(k => delete multiplicadorBolsitaRol[k]);
+  construirTablasRoles();
+  actualizarSelectorMes();
+  actualizarTextosAnio();
+  prefillMes();
+  calcular();
+  if(cacheSheets) aplicarDatosSheets(cacheSheets,true);
+  else cargarDatosSheets();
+}
+document.querySelectorAll('.btn-anio').forEach(b => b.addEventListener('click',() => seleccionarAnio(b.dataset.anio)));
+construirTablasRoles();
+actualizarSelectorMes();
+actualizarTextosAnio();
+
+function renderNota(){
+  Object.keys(canales).forEach(k => $('bc-'+k).classList.toggle('activo', k===canalNota));
+  const mesSel = +selMes.value;
+  const c = canales[canalNota];
+  const escV = REFERENCIA_VENTAS;
+  const bPctNota = +$('bolsaPct').value || 0;
+  const partDirNota = +$('part-dir').value || 0;
+  const esDireccion = canalNota === 'total';
+  const nombreOrganizacion = esDireccion ? 'Dirección' : 'Organización ' + c.nombre;
+  const comisionOrganizacion = (ventas,activacion) => {
+    const margenObjetivo = ventas * MARGEN_OBJ/100;
+    const bolsaBase = Math.min(ventas*bPctNota/100,margenObjetivo*CANDADO/100);
+    const bolsaActivada = bolsaBase * activacion;
+    return bolsaActivada * (esDireccion ? partDirNota : 100-partDirNota)/100;
+  };
+  let enc = '<th>'+ (canalNota==='total' ? 'Ventas netas' : c.nombre) +' (miles)</th>';
+  let fila = '<td class="rol">Objetivo '+ANIO_LIQUIDACION+' (miles)</td>';
+  let filaComision100 = '<td class="rol">Comisión '+nombreOrganizacion+' · 100% (pesos)</td>';
+  let filaEscenario = '<td class="rol">Referencia ventas · '+escV.toFixed(0)+'% (miles)</td>';
+  let filaComision80 = '<td class="rol">Comisión '+nombreOrganizacion+' · V'+escV.toFixed(0)+' / Act. 50% (pesos)</td>';
+  c.m.forEach((v,i) => {
+    const hoy = i===mesSel ? ' class="hoy"' : '';
+    const ventasObjetivo = v*1000;
+    enc += '<th'+hoy+'>'+MESES[i]+'</th>';
+    fila += '<td'+hoy+'>'+v.toLocaleString('es-MX')+'</td>';
+    filaComision100 += '<td'+hoy+'>'+mxn.format(comisionOrganizacion(ventasObjetivo,1))+'</td>';
+    filaEscenario += '<td'+hoy+'>'+Math.round(v*escV/100).toLocaleString('es-MX')+'</td>';
+    filaComision80 += '<td'+hoy+'>'+mxn.format(comisionOrganizacion(ventasObjetivo*escV/100,.50))+'</td>';
+  });
+  const ventasAnuales = anualCanal(canalNota);
+  enc += '<th>TOTAL</th>';
+  fila += '<td class="pago">'+(ventasAnuales/1000).toLocaleString('es-MX')+'</td>';
+  filaComision100 += '<td class="pago">'+mxn.format(comisionOrganizacion(ventasAnuales,1))+'</td>';
+  filaEscenario += '<td class="pago">'+Math.round(ventasAnuales/1000*escV/100).toLocaleString('es-MX')+'</td>';
+  filaComision80 += '<td class="pago">'+mxn.format(comisionOrganizacion(ventasAnuales*escV/100,.50))+'</td>';
+  $('notaEncabezado').innerHTML = enc;
+  $('notaFila').innerHTML = fila;
+  $('notaComision100').innerHTML = filaComision100;
+  $('notaFilaEscenario').innerHTML = filaEscenario;
+  $('notaComision80').innerHTML = filaComision80;
+}
+
+function setEscenario(tipo,valor){
+  $(tipo === 'ventas' ? 'escVentas' : 'escMargen').value = valor;
+  calcular();
+}
+
+// ---- Formato de dinero en campos capturables ----
+const parseMoney = v => Number(String(v).replace(/\D/g,'')) || 0;
+CANALES_REALES.forEach(k => ['vr-','mr-'].forEach(pre => {
+  $(pre+k).addEventListener('input', function(){
+    const d = this.value.replace(/\D/g,'');
+    this.value = d ? '$' + Number(d).toLocaleString('es-MX') : '';
+  });
+}));
+
+// ---- Sincronización de cifras reales y aceleradores desde Google Sheets ----
+const normalizarTexto = v => String(v ?? '').trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('es-MX');
+function numeroHoja(valor){
+  if(valor === null || valor === undefined || valor === '') return null;
+  if(typeof valor === 'number') return Number.isFinite(valor) ? valor : null;
+  let s = String(valor).trim().replace(/\s/g,'').replace(/[$%]/g,'');
+  if(!s) return null;
+  const coma = s.lastIndexOf(','), punto = s.lastIndexOf('.');
+  if(coma > punto) s = s.replace(/\./g,'').replace(',','.');
+  else if(punto > coma && coma >= 0) s = s.replace(/,/g,'');
+  else if(coma >= 0) s = s.replace(',','.');
+  const n = Number(s);
+  return Number.isFinite(n) ? n : null;
+}
+function valorTabla(celda, esPorcentaje=false){
+  if(!celda) return null;
+  if(esPorcentaje && celda.f && String(celda.f).includes('%')) return celda.f;
+  return celda.v ?? celda.f ?? null;
+}
+function porcentajeHoja(celda){
+  if(!celda) return null;
+  const tieneFormatoPorcentaje = celda.f && String(celda.f).includes('%');
+  const valor = numeroHoja(tieneFormatoPorcentaje ? celda.f : (celda.v ?? celda.f ?? null));
+  if(valor === null) return null;
+  if(tieneFormatoPorcentaje) return valor;
+  return Math.abs(valor) <= 1 ? valor * 100 : valor;
+}
+function estadoSheets(mensaje, tipo='', etiqueta=''){
+  const estado = $('estadoSheets');
+  if(estado){
+    estado.className = 'fuente-datos-estado' + (tipo ? ' ' + tipo : '');
+    estado.textContent = mensaje;
+  }
+  const meta = $('metaSheets');
+  const contenedor = $('fuenteSheets');
+  if(meta){
+    meta.textContent = etiqueta || (tipo === 'ok' ? 'conectado' : tipo === 'error' ? 'PPTO' : 'conectando…');
+    contenedor.className = tipo === 'ok' ? 'sheet-ok' : tipo === 'error' ? 'sheet-error' : '';
+    contenedor.title = mensaje;
+  }
+}
+function ponerDineroEnCampo(id, valor){
+  if(valor === null) return false;
+  $(id).value = '$' + Math.round(valor).toLocaleString('es-MX');
+  return true;
+}
+function ponerPorcentajeEnCampo(id, valor){
+  if(valor === null) return false;
+  $(id).value = Number(valor.toFixed(2));
+  return true;
+}
+const datosRealesRol = {};
+const multiplicadorBolsitaRol = {};
+const factorBolsitaOculto = id => {
+  const factor = multiplicadorBolsitaRol[id];
+  return Number.isFinite(factor) && factor >= 0 ? factor : 1;
+};
+function mostrarRealesRol(id,ventas=null,margen=null,margenPct=null){
+  const datos = datosRealesRol[id] || {};
+  if(ventas !== null){
+    datos.ventas = ventas;
+    $('realv-'+id).textContent = mxn.format(ventas);
+  }
+  if(margen !== null){
+    datos.margen = margen;
+    datos.margenPct = margenPct;
+    const celda = $('realm-'+id);
+    celda.textContent = mxn.format(margen);
+    if(margenPct !== null){
+      const detalle = document.createElement('small');
+      detalle.textContent = margenPct.toFixed(1)+'% de ventas';
+      celda.appendChild(detalle);
+    }
+  }
+  datosRealesRol[id] = datos;
+}
+
+let cargaSheetsActiva = false;
+let cacheSheets = null;
+function aplicarDatosSheets(respuesta,desdeCache=false){
+  if(respuesta?.status !== 'ok' || !respuesta?.table) throw new Error('Google Sheets no devolvió una tabla válida.');
+  const columnas = respuesta.table.cols || [];
+  const encabezados = columnas.map(c => normalizarTexto(c.label || c.id));
+  const requeridos = ['ano','mes','rol','ventas','margen','forecast %','moldes','alcances mkt','multiplicador bolsita'];
+  const indices = Object.fromEntries(requeridos.map(nombre => [nombre, encabezados.indexOf(nombre)]));
+  if(Object.values(indices).some(i => i < 0)) throw new Error('Revisa los encabezados A–I de la pestaña COMISIONES.');
+
+  const filas = (respuesta.table.rows || []).map(fila => {
+    const c = fila.c || [];
+    const ventas = numeroHoja(valorTabla(c[indices.ventas]));
+    const margenCapturado = numeroHoja(valorTabla(c[indices.margen]));
+    const margen = margenCapturado !== null && margenCapturado >= 0 && margenCapturado <= 1 && ventas !== null
+      ? ventas * margenCapturado
+      : margenCapturado;
+    const margenPct = margenCapturado !== null && margenCapturado >= 0 && margenCapturado <= 1
+      ? margenCapturado * 100
+      : margen !== null && ventas > 0 ? margen/ventas*100 : null;
+    return {
+      anio:numeroHoja(valorTabla(c[indices.ano])),
+      mes:valorTabla(c[indices.mes]),
+      rol:valorTabla(c[indices.rol]),
+      ventas,
+      margen,
+      margenPct,
+      forecast:porcentajeHoja(c[indices['forecast %']]),
+      moldes:porcentajeHoja(c[indices.moldes]),
+      mkt:porcentajeHoja(c[indices['alcances mkt']]),
+      multiplicadorBolsita:numeroHoja(valorTabla(c[indices['multiplicador bolsita']]))
+    };
+  });
+
+  const mesActual = NOMBRES_MES[+selMes.value];
+  const filasPeriodo = filas.filter(f =>
+    Number(f.anio) === ANIO_LIQUIDACION &&
+    normalizarTexto(f.mes) === normalizarTexto(mesActual)
+  );
+  if(!filasPeriodo.length){
+    estadoSheets(`Sin cifras en Sheets para ${mesActual} ${ANIO_LIQUIDACION}: se cargó el PPTO en Ventas y Margen, y 100% en los aceleradores.`, 'error');
+    return;
+  }
+
+  const porRol = new Map(filasPeriodo.filter(f => f.rol).map(f => [normalizarTexto(f.rol),f]));
+  let rolesEncontrados = 0, camposActualizados = 0;
+  grupos.forEach(g => g.miembros.forEach(p => {
+    const fila = porRol.get(normalizarTexto(p.rol));
+    if(!fila) return;
+    rolesEncontrados++;
+    const objetivoVentas = g.id === 'global' ? sumaObjMes(+selMes.value) : canales[g.canal].m[+selMes.value]*1000;
+    mostrarRealesRol(p.id,fila.ventas,fila.margen,fila.margenPct);
+    if(fila.ventas !== null){
+      ponerPorcentajeEnCampo('cv-'+p.id, topeCumplimiento(objetivoVentas > 0 ? fila.ventas/objetivoVentas*100 : 0));
+      camposActualizados++;
+    }
+    if(fila.margenPct !== null){
+      ponerPorcentajeEnCampo('cm-'+p.id, topeCumplimiento(fila.margenPct/MARGEN_OBJ*100));
+      camposActualizados++;
+    }
+    if(ponerPorcentajeEnCampo('fc-'+p.id,fila.forecast)) camposActualizados++;
+    if(ponerPorcentajeEnCampo('mol-'+p.id,fila.moldes)) camposActualizados++;
+    if(ponerPorcentajeEnCampo('mkt-'+p.id,fila.mkt)) camposActualizados++;
+    if(fila.multiplicadorBolsita !== null && fila.multiplicadorBolsita >= 0){
+      multiplicadorBolsitaRol[p.id] = fila.multiplicadorBolsita;
+      camposActualizados++;
+    }
+  }));
+
+  const gerentePorCanal = {retail:'Gerente Retail',mayoreo:'Gerente Mayoreo',catalogo:'Gerente Catálogo'};
+  CANALES_REALES.forEach(k => {
+    const fila = porRol.get(normalizarTexto(gerentePorCanal[k]));
+    if(!fila) return;
+    if(ponerDineroEnCampo('vr-'+k,fila.ventas)) camposActualizados++;
+    if(ponerDineroEnCampo('mr-'+k,fila.margen)) camposActualizados++;
+  });
+
+  calcular();
+  const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+  const origen = desdeCache ? 'Datos cargados al iniciar' : 'Sincronizado';
+  const totalRoles = grupos.reduce((s,g) => s + g.miembros.length,0);
+  estadoSheets(`${origen} · ${hora} · ${rolesEncontrados} de ${totalRoles} roles encontrados · ${camposActualizados} datos aplicados · Los vacíos conservan PPTO y aceleradores al 100%.`, 'ok', `${mesActual} ${ANIO_LIQUIDACION}`);
+}
+
+function cargarDatosSheets(){
+  if(cargaSheetsActiva) return;
+  cargaSheetsActiva = true;
+  estadoSheets(`Consultando ${SHEET_CONFIG.pestaña} para ${NOMBRES_MES[+selMes.value]} ${ANIO_LIQUIDACION}…`);
+
+  const callback = '__portaSheets_' + Date.now();
+  const script = document.createElement('script');
+  const terminar = () => {
+    clearTimeout(temporizador);
+    script.remove();
+    try{ delete window[callback]; }catch(_){ window[callback] = undefined; }
+    cargaSheetsActiva = false;
+  };
+  window[callback] = respuesta => {
+    try{
+      if(respuesta?.status === 'ok' && respuesta?.table) cacheSheets = respuesta;
+      aplicarDatosSheets(respuesta);
+    }
+    catch(error){ estadoSheets('No se pudieron aplicar los datos: ' + error.message, 'error'); }
+    finally{ terminar(); }
+  };
+  script.onerror = () => {
+    estadoSheets('No se pudo conectar con Google Sheets. Verifica internet y que la hoja permita consulta con el enlace.', 'error');
+    terminar();
+  };
+  const temporizador = setTimeout(() => {
+    estadoSheets('La consulta inicial tardó demasiado. Recarga la app o captura los valores manualmente.', 'error');
+    terminar();
+  },15000);
+  const params = new URLSearchParams({
+    tqx:'out:json;responseHandler:' + callback,
+    gid:SHEET_CONFIG.gid,
+    range:SHEET_CONFIG.rango,
+    headers:'1',
+    _:String(Date.now())
+  });
+  script.src = `https://docs.google.com/spreadsheets/d/${SHEET_CONFIG.id}/gviz/tq?${params}`;
+  script.async = true;
+  document.head.appendChild(script);
+}
+
+// Parámetros fijos del esquema (no visibles en la interfaz)
+const MARGEN_OBJ = 25;   // % de margen objetivo sobre ventas
+const CANDADO = 12;      // % del margen real como tope de la bolsa
+
+function prefillMes(){
+  const i = +selMes.value;
+  CANALES_REALES.forEach(k => {
+    const obj = canales[k].m[i]*1000;
+    $('vr-'+k).value = '$' + obj.toLocaleString('es-MX');
+    $('mr-'+k).value = '$' + Math.round(obj*MARGEN_OBJ/100).toLocaleString('es-MX');
+  });
+  grupos.forEach(g => g.miembros.forEach(p => {
+    multiplicadorBolsitaRol[p.id] = 1;
+    const ventaReferencia = g.id === 'global' ? sumaObjMes(i) : canales[g.canal].m[i]*1000;
+    mostrarRealesRol(p.id,ventaReferencia,ventaReferencia*MARGEN_OBJ/100,MARGEN_OBJ);
+    $('cm-'+p.id).value = 100;
+    $('cv-'+p.id).value = 100;
+    $('fc-'+p.id).value = 100;
+    $('mol-'+p.id).value = 100;
+    $('mkt-'+p.id).value = 100;
+  }));
+  $('metaMes').textContent = NOMBRES_MES[i] + ' ' + ANIO_LIQUIDACION;
+  renderNota();
+}
+selMes.addEventListener('change', () => {
+  prefillMes();
+  calcular();
+  if(cacheSheets) aplicarDatosSheets(cacheSheets,true);
+});
+
+let ultimoCalculo = null;
+
+function calcular(){
+  const i = +selMes.value;
+  const mPct = MARGEN_OBJ;
+  const bPct = +$('bolsaPct').value || 0;
+  const cPct = CANDADO;
+  $('vBolsaPct').textContent = bPct.toFixed(1) + '%';
+  $('metaBolsa').textContent = bPct.toFixed(1) + '% de ventas · candado 12% del margen';
+
+  // ---- Paso 1: bolsas por canal ----
+  const res = {};
+  let vObjG=0, vRealG=0, mObjG=0, mRealG=0;
+  CANALES_REALES.forEach(k => {
+    const vObj = canales[k].m[i]*1000;
+    const vReal = parseMoney($('vr-'+k).value);
+    const mObj = vObj * mPct/100;
+    const mReal = parseMoney($('mr-'+k).value);
+    const cumplV = topeCumplimiento(vObj>0 ? vReal/vObj*100 : 0);
+    const tasaMargenReal = vReal>0 ? mReal/vReal*100 : 0;
+    const cumplM = topeCumplimiento(tasaMargenReal/mPct*100);
+    const comb = cumplV*PESO_ACT_VENTAS + cumplM*PESO_ACT_MARGEN;
+    const act = tramo(comb);
+    const baseBolsa = Math.min(vReal*bPct/100, mReal*cPct/100);
+    const bolsa = baseBolsa * act;
+    res[k] = {vObj,vReal,mObj,mReal,tasaMargenReal,cumplV,cumplM,comb,act,baseBolsa,bolsa};
+    vRealG += vReal; mRealG += mReal;
+
+    $('obj-'+k).textContent = mxn.format(vObj);
+    $('objm-'+k).textContent = mxn.format(mObj);
+    $('tasa-m-'+k).textContent = tasaMargenReal.toFixed(1)+'% de ventas';
+    $('c1v-'+k).textContent = pct1(cumplV);
+    $('c1m-'+k).textContent = pct1(cumplM);
+    $('comb-'+k).textContent = pct1(comb);
+    $('act-'+k).textContent = (act*100).toFixed(0)+'%';
+    $('bolsa-'+k).textContent = mxn.format(bolsa);
+    $('bv-base-'+k).textContent = mxn.format(baseBolsa);
+    $('bv-act-'+k).textContent = (act*100).toFixed(0)+'%';
+    $('bv-monto-'+k).textContent = mxn.format(bolsa);
+  });
+  // Global: objetivos y reales = suma de canales, para que compare peras con peras
+  vObjG = sumaObjMes(i);
+  mObjG = vObjG * mPct/100;
+  const cumplVG = topeCumplimiento(vObjG>0 ? vRealG/vObjG*100 : 0);
+  const tasaMargenRealG = vRealG>0 ? mRealG/vRealG*100 : 0;
+  const cumplMG = topeCumplimiento(tasaMargenRealG/mPct*100);
+  const combG = cumplVG*PESO_ACT_VENTAS + cumplMG*PESO_ACT_MARGEN;
+  // La bolsa global es la suma de las bolsas de canal (cada una ya trae su activación)
+  const baseBolsaG = CANALES_REALES.reduce((a,k)=>a + res[k].baseBolsa, 0);
+  const bolsaG = CANALES_REALES.reduce((a,k)=>a + res[k].bolsa, 0);
+  const activacionEfectivaG = baseBolsaG>0 ? bolsaG/baseBolsaG : 0;
+  res.total = {vObj:vObjG,vReal:vRealG,mObj:mObjG,mReal:mRealG,tasaMargenReal:tasaMargenRealG,cumplV:cumplVG,cumplM:cumplMG,comb:combG,act:null,baseBolsa:baseBolsaG,bolsa:bolsaG};
+
+  $('obj-total').textContent = mxn.format(vObjG);
+  $('vr-total').textContent = mxn.format(vRealG);
+  $('objm-total').textContent = mxn.format(mObjG);
+  $('mr-total').textContent = mxn.format(mRealG);
+  $('tasa-m-total').textContent = tasaMargenRealG.toFixed(1)+'% de ventas';
+  $('c1v-total').textContent = pct1(cumplVG);
+  $('c1m-total').textContent = pct1(cumplMG);
+  $('comb-total').textContent = pct1(combG);
+  $('act-total').textContent = 'Σ canales';
+  $('bolsa-total').textContent = mxn.format(bolsaG);
+  $('bv-base-total').textContent = mxn.format(baseBolsaG);
+  $('bv-act-total').textContent = (activacionEfectivaG*100).toFixed(0)+'%';
+  $('bv-monto-total').textContent = mxn.format(bolsaG);
+
+  // ---- Paso 2: liquidación por equipo ----
+  // El Director retiene su % de la suma de bolsas; cada equipo reparte el resto de su bolsa.
+  const partDir = +$('part-dir').value || 0;
+  let totalPago = 0;
+  const filas = [];
+  const avisos = [];
+  grupos.forEach(g => {
+    const bolsa = res[g.canal].bolsa;
+    const repartible = g.id === 'global' ? bolsa : bolsa * (100-partDir)/100;
+    let sumaPart = 0;
+    g.miembros.forEach(p => {
+      const part = +$('part-'+p.id).value || 0;
+      $('partv-'+p.id).textContent = part.toFixed(1).replace('.0','')+'%';
+      $('bolsita-'+p.id).style.setProperty('--p',Math.min(100,Math.max(0,part))+'%');
+      const cm = topeCumplimiento($('cm-'+p.id).value);
+      const cv = topeCumplimiento($('cv-'+p.id).value);
+      $('cm-'+p.id).value = cm;
+      $('cv-'+p.id).value = cv;
+      const fcv = +$('fc-'+p.id).value || 0;
+      const molPct = numeroOpcional($('mol-'+p.id).value);
+      const mktPct = numeroOpcional($('mkt-'+p.id).value);
+      const fMol = factorMoldes(molPct);
+      const fMkt = factorMkt(mktPct);
+
+      const asig = g.id === 'global' ? bolsa * part/100 : repartible * part/100;
+      const score = tramo(cv)*PESO_SCORE_VENTAS + tramo(cm)*PESO_SCORE_MARGEN;
+      const fFc = factorForecast(fcv);
+      const pago = asig * score * fFc * fMol * fMkt * factorBolsitaOculto(p.id);
+      const reales = datosRealesRol[p.id] || {};
+      sumaPart += part; totalPago += pago;
+
+      $('asig-'+p.id).textContent = mxn.format(asig);
+      $('score-'+p.id).textContent = score.toFixed(2)+'x';
+      $('ffc-'+p.id).textContent = fFc.toFixed(2)+'x' + (fcv<=0 ? ' (sin fc)' : '');
+      $('fmol-'+p.id).textContent = fMol.toFixed(2)+'x';
+      $('fmkt-'+p.id).textContent = fMkt.toFixed(2)+'x';
+      $('pago-'+p.id).textContent = mxn.format(pago);
+      filas.push({grupo:g.nombre, rol:p.rol, estimado:!!p.estimado, bolsa, part, asig, ventaReal:reales.ventas ?? null, margenReal:reales.margen ?? null, margenRealPct:reales.margenPct ?? null, cm, cv, score, fcv, fFc, molPct, fMol, mktPct, fMkt, pago});
+    });
+    $('gb-'+g.id).textContent = mxn.format(bolsa);
+    if(g.id !== 'global') $('gr-'+g.id).textContent = mxn.format(repartible);
+    $('gp-'+g.id).textContent = sumaPart.toFixed(1)+'%';
+    if(g.id !== 'global' && Math.abs(sumaPart-100) > 0.01) avisos.push(g.nombre + ' reparte ' + sumaPart.toFixed(1) + '%');
+  });
+  $('tPago').textContent = mxn.format(totalPago);
+
+  const aviso = $('avisoSuma');
+  if(avisos.length){
+    aviso.style.display = 'block';
+    aviso.textContent = 'Revisa el reparto (debe sumar 100% por canal): ' + avisos.join(' · ');
+  } else aviso.style.display = 'none';
+
+  // ---- Resumen ----
+  $('kGlobal').textContent = mxn.format(bolsaG);
+  $('kCanales').textContent = mxn.format(bolsaG * partDir/100);
+  $('kTotal').textContent = mxn.format(totalPago);
+  $('kPctVentas').textContent = vRealG>0 ? (totalPago/vRealG*100).toFixed(2)+'%' : '—';
+
+  // ---- Vista anual dinámica: mismos tramos del cálculo mensual; aceleradores en 1.00x ----
+  const escV = +$('escVentas').value || 0;
+  const escM = +$('escMargen').value || 0;
+  const cumplVAn = topeCumplimiento(escV);
+  const cumplMAn = topeCumplimiento(escM);
+  const combinadoAn = cumplVAn*PESO_ACT_VENTAS + cumplMAn*PESO_ACT_MARGEN;
+  const actAn = tramo(combinadoAn);
+  const scoreAn = tramo(cumplVAn)*PESO_SCORE_VENTAS + tramo(cumplMAn)*PESO_SCORE_MARGEN;
+  const ventasPptoAn = sumaAnualCanales();
+  const ventasEscAn = ventasPptoAn * escV/100;
+  const tasaMargenEsc = mPct * escM/100;
+  const margenEscAn = ventasPptoAn * mPct/100 * escM/100;
+
+  $('vEscVentas').textContent = escV.toFixed(0)+'%';
+  $('vEscMargen').textContent = escM.toFixed(0)+'%';
+  $('vEscMargenReal').textContent = tasaMargenEsc.toFixed(1)+'%';
+  $('anCombinado').textContent = combinadoAn.toFixed(1)+'%';
+  $('anFactorActivacion').textContent = actAn.toFixed(2)+'x';
+  $('anScore').textContent = scoreAn.toFixed(2)+'x';
+  $('anVentas').textContent = mxn.format(ventasEscAn);
+  $('anVentasPct').textContent = escV.toFixed(0)+'% del PPTO anual';
+  $('anMargen').textContent = mxn.format(margenEscAn);
+  $('anMargenPct').textContent = escM.toFixed(0)+'% del objetivo · margen '+tasaMargenEsc.toFixed(1)+'%';
+  $('anActivacion').textContent = (actAn*100).toFixed(0)+'%';
+  document.querySelectorAll('.preset').forEach(b => {
+    const actual = b.dataset.esc === 'ventas' ? escV : escM;
+    b.classList.toggle('activo', Number(b.dataset.valor) === actual);
+  });
+  renderNota();
+
+  let anTotal = 0, sumaBolsasAn = 0;
+  const anCanales = {};
+  // Primero los canales; el Director retiene su % de la suma.
+  grupos.forEach(g => {
+    if(g.id === 'global') return;
+    const ventaObj = anualCanal(g.canal);
+    const ventaEsc = ventaObj * escV/100;
+    const margenEsc = ventaObj * mPct/100 * escM/100;
+    const bolsaAntesActivacion = Math.min(ventaEsc*bPct/100, margenEsc*cPct/100);
+    const bolsaAn = bolsaAntesActivacion * actAn;
+    sumaBolsasAn += bolsaAn;
+    anCanales[g.id] = {ventaEsc,margenEsc,bolsaAntesActivacion,bolsaAn};
+    const repartibleAn = bolsaAn * (100-partDir)/100;
+    $('anventa-'+g.id).textContent = mxn.format(ventaEsc);
+    $('anmargen-'+g.id).textContent = mxn.format(margenEsc);
+    $('anact-'+g.id).textContent = (actAn*100).toFixed(0)+'%';
+    $('anb-'+g.id).textContent = mxn.format(bolsaAn);
+    g.miembros.forEach(p => {
+      const part = +$('part-'+p.id).value || 0;
+      const monto = repartibleAn * part/100 * scoreAn * factorBolsitaOculto(p.id);
+      anTotal += monto;
+      $('anp-'+p.id).textContent = part+'%';
+      $('anscore-'+p.id).textContent = scoreAn.toFixed(2)+'x';
+      $('an-'+p.id).textContent = mxn.format(monto);
+    });
+  });
+  const montoDirAn = sumaBolsasAn * partDir/100 * scoreAn * factorBolsitaOculto('dir');
+  anTotal += montoDirAn;
+  $('anventa-global').textContent = mxn.format(ventasEscAn);
+  $('anmargen-global').textContent = mxn.format(margenEscAn);
+  $('anact-global').textContent = (actAn*100).toFixed(0)+'%';
+  $('anb-global').textContent = mxn.format(sumaBolsasAn);
+  $('anp-dir').textContent = partDir+'%';
+  $('anscore-dir').textContent = scoreAn.toFixed(2)+'x';
+  $('an-dir').textContent = mxn.format(montoDirAn);
+  $('anBolsa').textContent = mxn.format(sumaBolsasAn);
+  $('anTotal').textContent = mxn.format(anTotal);
+  $('anTotalTabla').textContent = mxn.format(anTotal);
+  $('anPct').textContent = ventasEscAn>0 ? (anTotal/ventasEscAn*100).toFixed(2)+'% de ventas escenario' : 'Sin ventas en el escenario';
+
+  ultimoCalculo = {anio:ANIO_LIQUIDACION, mesIdx:i, mes:NOMBRES_MES[i], mPct, bPct, cPct, partDir, res, totalPago, filas, escV, escM, cumplVAn, cumplMAn, tasaMargenEsc, combinadoAn, actAn, scoreAn, ventasEscAn, margenEscAn, sumaBolsasAn, anCanales, anTotal};
+}
+
+function exportarCSV(){
+  if(!ultimoCalculo) calcular();
+  const u = ultimoCalculo;
+  const enc = [];
+  enc.push(['LIQUIDACION BONO COMERCIAL ' + u.anio + ' - PORTA']);
+  enc.push(['Elaborado por','Roberto Saucedo']);
+  enc.push(['Periodo', u.mes + ' ' + u.anio]);
+  enc.push(['Fecha de calculo', new Date().toLocaleDateString('es-MX')]);
+  enc.push(['Parametros', 'Bolsa ' + u.bPct.toFixed(1) + '% de ventas', 'Candado ' + u.cPct.toFixed(1) + '% del margen', 'Margen objetivo ' + u.mPct + '%', 'Retencion direccion ' + u.partDir + '%', 'Activacion ventas 70% / margen 30%', 'Score ventas 70% / margen 30%']);
+  enc.push([]);
+  enc.push(['Canal','Obj ventas','Ventas reales','Obj margen','Margen real','Margen real %','Cumpl V %','Cumpl M %','Combinado %','Activacion %','Bolsa del mes']);
+  ['retail','mayoreo','catalogo','total'].forEach(k => {
+    const r = u.res[k];
+    enc.push([k==='total'?'GLOBAL (suma de canales)':canales[k].nombre, r.vObj, r.vReal, Math.round(r.mObj), r.mReal, r.tasaMargenReal.toFixed(1), r.cumplV.toFixed(1), r.cumplM.toFixed(1), r.comb.toFixed(1), r.act===null?'suma':(r.act*100).toFixed(0), r.bolsa.toFixed(2)]);
+  });
+  enc.push([]);
+  enc.push(['Bolsa','Rol','Participacion %','Bolsa asignada','Venta real','Margen real','Margen real %','Cumpl margen %','Cumpl ventas %','Score V70/M30','Forecast %','Factor forecast','Moldes %','Factor moldes','Alcance MKT %','Factor MKT','Pago']);
+  u.filas.forEach(f => enc.push([f.grupo, f.rol + (f.estimado ? ' (estimado)' : ''), f.part, f.asig.toFixed(2), f.ventaReal ?? '', f.margenReal ?? '', f.margenRealPct?.toFixed(1) ?? '', f.cm, f.cv, f.score.toFixed(2), f.fcv, f.fFc.toFixed(2), f.molPct ?? '', f.fMol.toFixed(2), f.mktPct ?? '', f.fMkt.toFixed(2), f.pago.toFixed(2)]));
+  enc.push([]);
+  enc.push(['TOTAL A PAGAR DEL MES',...Array(15).fill(''),u.totalPago.toFixed(2)]);
+  enc.push([]);
+  enc.push(['ESCENARIO ANUAL ' + u.anio]);
+  enc.push(['Escenario ventas %',u.escV,'Cumplimiento ventas aplicado %',u.cumplVAn,'Escenario margen %',u.escM,'Cumplimiento margen aplicado %',u.cumplMAn,'Combinado activacion V70/M30 %',u.combinadoAn.toFixed(1),'Activacion',u.actAn.toFixed(2),'Score V70/M30',u.scoreAn.toFixed(2)]);
+  enc.push(['Ventas escenario',u.ventasEscAn.toFixed(2),'Margen escenario',u.margenEscAn.toFixed(2),'Margen resultante %',u.tasaMargenEsc.toFixed(1),'Bolsa anual activada',u.sumaBolsasAn.toFixed(2),'Total a pagar',u.anTotal.toFixed(2)]);
+
+  const csv = '﻿' + enc.map(f => f.map(c => '"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+  const blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'liquidacion-bono-' + u.anio + '-' + String(u.mesIdx+1).padStart(2,'0') + '-' + u.mes.toLowerCase() + '.csv';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+document.addEventListener('input', e => {
+  if(e.target.matches('input,select')) calcular();
+});
+document.addEventListener('change', e => {
+  if(e.target.matches('input,select')) calcular();
+});
+prefillMes();
+calcular();
+cargarDatosSheets();
+</script>
+</body>
+</html>
