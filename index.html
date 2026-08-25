@@ -389,7 +389,7 @@
       <span>Periodo: <b id="metaMes">—</b></span>
       <span>Fecha de cálculo: <b id="fechaCalc">—</b></span>
       <span>PPTO anual: <b id="metaPpto">—</b></span>
-      <span>Margen objetivo: <b>25%</b></span>
+      <span>Margen objetivo: <b>30%</b></span>
       <span>Bolsa: <b id="metaBolsa">2.0% de ventas · candado 12% del margen</b></span>
       <span id="fuenteSheets">Sheets: <b id="metaSheets">conectando…</b></span>
       <span class="estado-app"><i aria-hidden="true"></i><b>Cálculo en vivo</b></span>
@@ -587,7 +587,7 @@
             <button type="button" class="preset" data-esc="margen" data-valor="100" onclick="setEscenario('margen',100)">100%</button>
             <button type="button" class="preset" data-esc="margen" data-valor="120" onclick="setEscenario('margen',120)">120%</button>
           </div>
-          <div class="equivalencia-margen">Margen resultante sobre ventas: <b id="vEscMargenReal">25.0%</b></div>
+          <div class="equivalencia-margen">Margen resultante sobre ventas: <b id="vEscMargenReal">30.0%</b></div>
         </div>
       </div>
       <div class="escenario-resumen">
@@ -677,7 +677,7 @@
         <caption>Cómo funcionan venta y margen en el esquema</caption>
         <tr><th style="width:230px">Paso</th><th>Cómo se calcula</th></tr>
         <tr><td>1 · Cumplimiento de ventas</td><td>Ventas reales del canal ÷ objetivo del mes (PPTO <span id="anioReferencia">2026</span>)</td></tr>
-        <tr><td>2 · Cumplimiento de margen</td><td>Porcentaje de margen real sobre ventas reales ÷ meta de margen de 25%. Ejemplo: margen 20% ÷ meta 25% = 80% de cumplimiento</td></tr>
+        <tr><td>2 · Cumplimiento de margen</td><td>Porcentaje de margen real sobre ventas reales ÷ meta de margen de 30%. Ejemplo: margen 20% ÷ meta 30% = 66.7% de cumplimiento</td></tr>
         <tr><td>3 · Combinado</td><td>Para activar la bolsa pondera ventas 70% y margen 30%. Ejemplo: ventas 100% y margen 90% → combinado 97% → activa 90% de la bolsa</td></tr>
         <tr><td>4 · Bolsa del canal</td><td>Se calcula por canal: MIN(% de bolsa × ventas reales, 12% × margen real) × factor de activación. El candado limita la bolsa cuando el margen real no alcanza para sostenerla</td></tr>
         <tr><td>5 · Reparto</td><td>El Director retiene su % de la suma de bolsas; el equipo del canal reparte el resto según su participación</td></tr>
@@ -915,7 +915,7 @@ function actualizarTextosAnio(){
   $('anioReferencia').textContent = ANIO_LIQUIDACION;
   $('metaPpto').textContent = '$' + Math.round(anualCanal('total')/1000).toLocaleString('es-MX') + ' miles';
   $('descLiquidacion').textContent = ANIO_LIQUIDACION === 2026
-    ? 'Para 2026, los KAM se estiman provisionalmente con el reparto de 2027: Retail 40% Gerencia + 30% KAM 1 + 30% KAM 2; Mayoreo 60% Gerencia + 40% KAM. Dirección recibe su participación sobre la suma de Retail HD, Mayoreo y Catálogo. Si Sheets está vacío, Ventas, Margen y aceleradores usan el PPTO y 100% como referencia.'
+    ? 'Para 2026, los KAM se estiman provisionalmente con el reparto de 2027: Retail 40% Gerencia + 30% KAM 1 + 30% KAM 2; Mayoreo 60% Gerencia + 40% KAM. Dirección recibe su participación sobre la suma de Retail HD, Mayoreo y Catálogo. Activación y score ponderan Ventas 70% + Margen 30%. Si Sheets está vacío, Ventas, Margen y aceleradores usan el PPTO y 100% como referencia.'
     : 'Cada rol recupera su bolsita editable dentro de la liquidación mensual. La bolsita de Dirección controla la retención sobre la suma global; las bolsitas de cada equipo reparten el remanente de su canal y deben sumar 100%. Si Sheets está vacío, Ventas, Margen, Forecast, Moldes/ROI y Alcance MKT usan 100% como referencia. Score individual = ventas 70% + margen 30%, ajustado por los tres aceleradores.';
   document.querySelectorAll('.btn-anio').forEach(b => {
     const activo = +b.dataset.anio === ANIO_LIQUIDACION;
@@ -945,7 +945,7 @@ function seleccionarAnio(anio){
   prefillMes();
   calcular();
   if(cacheSheets) aplicarDatosSheets(cacheSheets,true);
-  else cargarDatosSheets();
+  cargarDatosSheets();
 }
 document.querySelectorAll('.btn-anio').forEach(b => b.addEventListener('click',() => seleccionarAnio(b.dataset.anio)));
 construirTablasRoles();
@@ -1166,7 +1166,7 @@ function aplicarDatosSheets(respuesta,desdeCache=false){
   const hora = new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
   const origen = desdeCache ? 'Datos cargados al iniciar' : 'Sincronizado';
   const totalRoles = grupos.reduce((s,g) => s + g.miembros.length,0);
-  estadoSheets(`${origen} · ${hora} · ${rolesEncontrados} de ${totalRoles} roles encontrados · ${camposActualizados} datos aplicados · Los vacíos conservan PPTO y aceleradores al 100%.`, 'ok', `${mesActual} ${ANIO_LIQUIDACION}`);
+  estadoSheets(`${origen} · ${hora} · ${rolesEncontrados} de ${totalRoles} roles encontrados · ${camposActualizados} datos aplicados · Los vacíos conservan PPTO y aceleradores al 100%.`, 'ok', `✓ ${mesActual} ${ANIO_LIQUIDACION} · ${hora}`);
 }
 
 function cargarDatosSheets(){
@@ -1200,7 +1200,9 @@ function cargarDatosSheets(){
   },15000);
   const params = new URLSearchParams({
     tqx:'out:json;responseHandler:' + callback,
+    tq:'select *',
     gid:SHEET_CONFIG.gid,
+    sheet:SHEET_CONFIG.pestaña,
     range:SHEET_CONFIG.rango,
     headers:'1',
     _:String(Date.now())
@@ -1211,7 +1213,7 @@ function cargarDatosSheets(){
 }
 
 // Parámetros fijos del esquema (no visibles en la interfaz)
-const MARGEN_OBJ = 25;   // % de margen objetivo sobre ventas
+const MARGEN_OBJ = 30;   // % de margen objetivo sobre ventas
 const CANDADO = 12;      // % del margen real como tope de la bolsa
 
 function prefillMes(){
@@ -1238,6 +1240,7 @@ selMes.addEventListener('change', () => {
   prefillMes();
   calcular();
   if(cacheSheets) aplicarDatosSheets(cacheSheets,true);
+  cargarDatosSheets();
 });
 
 let ultimoCalculo = null;
@@ -1478,9 +1481,19 @@ document.addEventListener('input', e => {
 document.addEventListener('change', e => {
   if(e.target.matches('input,select')) calcular();
 });
+function refrescarSheetsAutomatico(){
+  if(document.visibilityState === 'hidden') return;
+  cargarDatosSheets();
+}
+window.addEventListener('focus',refrescarSheetsAutomatico);
+document.addEventListener('visibilitychange',() => {
+  if(document.visibilityState === 'visible') refrescarSheetsAutomatico();
+});
+setInterval(refrescarSheetsAutomatico,60000);
 prefillMes();
 calcular();
 cargarDatosSheets();
 </script>
 </body>
 </html>
+
